@@ -455,8 +455,8 @@ export default class Products extends React.Component<
                 : viewportWidth > media.tablet
                 ? 0.7
                 : 0.85;
-        const boxWidth = ratio * viewportWidth;
-        const boxHeight = ratio * viewportHeight * 0.9;
+        const boxWidth = Math.floor(ratio * viewportWidth);
+        const boxHeight = Math.floor(ratio * viewportHeight * 0.9);
         const columns = horizontalViewport ? 3 : 2;
         const base = [1, 2, 3, 4, 5, 6];
         const marginVertical = 15;
@@ -464,17 +464,18 @@ export default class Products extends React.Component<
         const outerMarginHorizontal = 20;
         const outerMarginVertical = 20;
         const rows = Math.ceil(base.length / columns);
-        const width =
+        const width = Math.floor(
             (boxWidth -
                 marginHorizontal * (columns - 1) -
                 2 * outerMarginHorizontal) /
-            columns;
-        const height =
+                columns
+        );
+        const height = Math.floor(
             (boxHeight -
                 marginVertical * (rows - 1) -
                 2 * outerMarginVertical) /
-            rows;
-        console.log(width);
+                rows
+        );
         const els = base.map((el: number, index: number) => (
             <Product
                 key={index}
